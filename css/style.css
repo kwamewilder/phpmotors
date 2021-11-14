@@ -1,0 +1,619 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Open+Sans&display=swap');
+   html {
+        box-sizing: border-box;
+    }
+    
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+    
+    html {
+        background-image: url('/phpmotors/images/site/small_check.jpg');
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #ffff;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    h1 {
+        width: 100%;
+        margin: 0 auto;
+        color: #3a3a3a;
+        font-size: 2em;
+        padding: 15px;
+    }
+    
+    h2 {
+        font-size: 1.4em;
+        padding: 1rem;
+    }
+    
+    p {
+        padding: 1rem;
+    }
+    /***********Header************/
+    
+    header {
+        height: 100px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ffff;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+    
+    header p {
+        display: flex;
+        align-items: center;
+    }
+    
+    header p a {
+        text-decoration: none;
+        padding: .7em;
+        font-size: 1em;
+    }
+    
+    header img {
+        width: 50%;
+    }
+    /*************Navigation**********/
+    
+    nav {
+        font-size: 1rem;
+        background-color: #3a3a3a;
+        color: #ffff;
+    }
+    
+    nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        /* justify-content: space-around;  */
+    }
+    
+    nav ul li {
+        cursor: pointer;
+        padding: 0.5rem;
+        flex: content;
+        text-align: center;
+        justify-items: flex-start;
+    }
+    
+    nav ul li:hover {
+        background-color: #4c96d7;
+        color: #3a3a3a;
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        color: #ffff;
+    }
+    /***************line************/
+    
+    #line {
+        width: 100%;
+        height: 5px;
+        margin: 0 auto;
+        background-color: #3a3a3a;
+    }
+    /***************Footer***********/
+    
+    footer {
+        font-size: .9em;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        padding: .5em;
+    }
+    /*********Home Page*********/
+    
+    .main_focus {
+        display: flex;
+    }
+    
+    .d_wrapper {
+        width: 9rem;
+        height: 200px;
+        margin: 0 5%;
+        line-height: 1rem;
+    }
+    
+    .delorean {
+        width: 100%;
+        height: 500px;
+    }
+    
+    .details {
+        font-size: 1rem;
+        color: #4c96d7;
+    }
+    
+    .details p {
+        color: #4c96d7;
+        font-size: 1.2em;
+    }
+    
+    .img_button {
+        width: 100%;
+    }
+    /***********Section Work******************/
+    
+    .info {
+        width: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+    
+    .reviews {
+        grid-row: 1;
+        padding: 1rem;
+    }
+    
+    .reviews ul li {
+        padding: .5rem;
+    }
+    
+    .upgrades {
+        grid-row: 2;
+        display: block;
+        padding: 1rem;
+    }
+    
+    .info_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .info_details {
+        display: block;
+        padding: .5rem;
+        width: 50%;
+        text-align: center;
+        align-self: center;
+    }
+    
+    .images {
+        background-color: #4c96d7;
+        display: flex;
+        justify-content: center;
+        width: 5rem;
+        height: 80px;
+    }
+    /**************Forms **********/
+    
+    fieldset {
+        margin: 1rem 0;
+        border: none;
+        padding: .5rem;
+    }
+    
+    label {
+        display: block;
+        padding: .3rem;
+        color: black;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+    
+    input,
+    select,
+    textarea.top {
+        margin-left: .4rem;
+        font-size: 1.2rem;
+        color: #000;
+        font-weight: bold;
+    }
+    
+    select option:nth-child(1):required:invalid,
+    input:required:invalid,
+    input:focus:invalid {
+        /*background-image: url(/images/invalid.png);
+        background-position: right top;
+        background-repeat: no-repeat;*/
+        border-left: red solid 4px;
+    }
+    
+    input:required:valid {
+        border-left: green solid 4px;
+    }
+    /*textarea {
+        width: 80%;
+        height: auto;
+    }*/
+    
+    span {
+        display: flex;
+        flex-wrap: wrap;
+        padding: .3rem;
+        word-wrap: normal;
+        text-decoration: none;
+        align-content: flex-end;
+    }
+    
+    .cookie {
+        font-size: 1.3rem;
+        padding: 20px;
+        align-items: center;
+        font-style: italic;
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        margin-top: 20px;
+    }
+    
+    select {
+        display: flex;
+        width: max-content;
+        font-size: 1.2rem;
+        color: #000;
+    }
+    
+    button {
+        display: block;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: .3rem;
+        margin-left: .5rem;
+        margin-top: 1.2rem;
+    }
+    
+    button:hover {
+        background-color: #4c96d7;
+        color: #ffff;
+    }
+    
+    .showPassword {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #3a3a3a;
+        color: #ffff;
+        border-radius: 0%;
+        margin-top: 10px;
+    }
+    
+    fieldset a {
+        display: block;
+        margin: 1rem;
+    }
+    
+    fieldset p {
+        margin: 0 auto;
+        padding: .7rem;
+    }
+    
+    fieldset p a {
+        text-decoration: dotted;
+    }
+    
+    .message {
+        display: flex;
+        flex-wrap: wrap;
+        padding: .5rem;
+        font-size: 1.2rem;
+        margin-left: 1rem;
+        color: #4c96d7;
+        font-style: italic;
+    }
+    /***************************Admin***************/
+    
+    .admin_details li {
+        padding: .5rem;
+    }
+    
+    .admin_details p {
+        padding: 1rem;
+        line-height: 30px;
+        margin-top: -30px;
+    }
+    /*****************Classification Table*******************/
+    
+    tbody {
+        margin: 1rem;
+    }
+    
+    tbody tr td {
+        padding: .7rem;
+    }
+    /*********************Display Pages***************/
+    
+    #inv-display {
+        margin: 2%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #inv-display a {
+        /* margin: 0 auto; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style-type: none;
+        padding: .4rem;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 1px #aaaaaa;
+        text-decoration: none;
+    }
+    
+    #inv-display a img {
+        display: flex;
+        width: 200px;
+        margin: 0 auto;
+    }
+    
+    #inv-display a span {
+        justify-content: center;
+        flex-wrap: nowrap;
+        padding: .4rem;
+    }
+    /*******************Details Page*****************/
+    
+    section {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .left_wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 2%;
+    }
+    
+    .left_wrapper h1 {
+        width: 100%;
+        margin: 0 auto;
+        color: #3a3a3a;
+        font-size: 2em;
+        padding: 1.5rem;
+    }
+    
+    .left_wrapper img {
+        /* max-height: 400px; */
+        max-width: 100%;
+        box-shadow: 10px 10px 5px #aaaaaa;
+    }
+    
+    .right_wrapper {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        padding: 2%;
+    }
+    
+    .right_wrapper h2,
+    p {
+        /* align-content: center; */
+        padding: 0;
+    }
+    
+    .main_details {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .thumb_container {
+        padding: 1rem;
+        width: 200px;
+    }
+    
+    .thumb_Wrapper img {
+        margin: 0 auto;
+        width: 300px;
+        padding: .3rem;
+        box-shadow: 5px 5px 2px #aaaaaa;
+    }
+    /*****************Images Admin Page***********/
+    
+    .image_main {
+        margin: 2%;
+    }
+    
+    .image_main h1,
+    h2,
+    label,
+    input,
+    .upbtn {
+        padding: .5rem;
+        margin: .3rem;
+    }
+    
+    .image_container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .first_wrapper.fieldset {
+        padding: 0;
+    }
+    
+    .second_wrapper {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .first_wrapper fieldset {
+        display: block;
+        padding: 0;
+    }
+    
+    .first_wrapper fieldset label.pImage,
+    input.pImage {
+        display: flex;
+    }
+    
+    fieldset input {
+        display: block;
+    }
+    
+    .notice {
+        font-weight: bold;
+        font-size: 1rem;
+        margin-left: .9rem;
+    }
+    
+    .upbtn,
+    select#invId {
+        display: block;
+        margin-left: .8rem;
+    }
+    
+    #image-display {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    #image-display ul {
+        text-decoration: none;
+    }
+    
+    #image-display li {
+        padding: 1rem;
+    }
+    
+    #image-display img {
+        width: 200px;
+        height: 150px;
+        padding: 1rem;
+    }
+    /**********Large Screen Media Queries*******/
+    
+    @media screen and (min-width: 430px) {
+        html {
+            background-image: url('/phpmotors/images/site/checkerboard.jpg');
+        }
+        body {
+            width: 80%;
+            border: 5px solid #a6cbeb;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        footer {
+            font-size: 1em;
+        }
+        .info {
+            display: flex;
+        }
+        .images {
+            width: 12em;
+            margin: 0 auto;
+        }
+        .info_details {
+            padding: .5em;
+            width: 50%;
+        }
+        .reviews {
+            width: 100%;
+            padding: 1em;
+        }
+        nav ul li {
+            padding: .9rem;
+            font-size: 1.4rem;
+            justify-content: flex-start;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+        header img {
+            width: 30%;
+        }
+        .details {
+            width: 10em;
+        }
+        button {
+            padding: 1.2rem;
+        }
+        .ShowPassword {
+            padding: .3rem;
+        }
+        label {
+            font-size: 1.5rem;
+        }
+        .main_details {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .thumb_container {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            margin-top: 50px;
+        }
+        .thumb_Wrapper img {
+            box-shadow: 5px 5px 2px #aaaaaa;
+            ;
+        }
+        .thumb_container {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            width: 250px;
+        }
+        .thumb_Wrapper img {
+            margin: .5rem;
+            width: 200px;
+            padding: .2rem;
+            box-shadow: 5px 5px 2px #aaaaaa;
+        }
+        .thumb_Wrapper img:hover {
+            padding: 0;
+            box-shadow: none;
+            transform: scale(2);
+        }
+        /* For vehicle display in classification view */
+        #inv-display {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        #inv-display a {
+            margin: .3rem;
+            flex: 1 1 auto;
+            border: 1px solid rgb(219, 212, 212);
+            box-shadow: 2px 2px 1px #ccc;
+        }
+        #inv-display a li h2 {
+            font-size: 1.5rem;
+            justify-content: center;
+        }
+        #inv-display a li img {
+            margin: 0 auto;
+            width: auto;
+            justify-content: center;
+            height: 110px;
+        }
+        #inv-display a span {
+            font-size: 1.3rem;
+            justify-content: center;
+        }
+        /******the Details Page******************/
+        section {
+            display: flex;
+            flex-direction: row;
+        }
+        .left_wrapper {
+            display: block;
+            padding: 2%;
+        }
+        .left_wrapper img {
+            max-height: 400px;
+            max-width: 600px;
+            box-shadow: 10px 10px 5px #aaaaaa;
+        }
+        .right_wrapper {
+            margin-top: 60px;
+        }
+    }
