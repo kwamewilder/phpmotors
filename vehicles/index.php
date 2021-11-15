@@ -6,7 +6,7 @@
 session_start();
 
 
-require_once '../model/uploads-model.php';
+
 
 //Add database connection file
 require_once '../library/connections.php';
@@ -108,7 +108,7 @@ switch ($action) {
             exit;
         }
         //Process if no error
-        $addVehicleResult = add-Vehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
+        $addVehicleResult = addvehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId);
         //Check result
         if ($addVehicleResult === 1) {
             $message = 'The ' . $invMake . ' ' . $invModel . ' was added successfully!';
@@ -120,6 +120,25 @@ switch ($action) {
             exit;
         }
         break;
+
+                /* * ********************************** 
+        * Get vehicles by classificationId 
+        * Used for starting Update & Delete process 
+        * ********************************** */ 
+        case 'getInventoryItems': 
+            // Get the classificationId 
+            $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
+            // Fetch the vehicles by classificationId from the DB 
+            $inventoryArray = getInventoryByClassification($classificationId); 
+            // Convert the array to a JSON object and send it back 
+            echo json_encode($inventoryArray); 
+            break;
+
+        default:
+        $classificationList = buildClassificationList($classifications);
+       
+        include '../view/vehicle-man.php'; 
+        break; 
 
         
 }

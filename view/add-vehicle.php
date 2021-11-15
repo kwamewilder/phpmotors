@@ -18,7 +18,7 @@ $classList .= "</select>";
 ?>
 <?php
 
-if (isset($_SESSION['clientData']['clientLevel'])&&($_SESSION['clientData']['clientLevel'] < 2)) {
+if (isset($_SESSION['clientData']['clientLevel'])&&($_SESSION['clientData']['clientLevel'] != 3)) {
     header('Location: /phpmotors/');
     exit;
 }
