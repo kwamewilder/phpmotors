@@ -10,8 +10,8 @@
 </head>
 
 <body>
-<header>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+    <header>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . './phpmotors/common/header.php'; ?>
     </header>
 
     <nav>

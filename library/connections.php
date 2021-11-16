@@ -19,9 +19,9 @@ function phpmotorsConnect()
     //Creating actual connection object and assigning it to a variable. 
     try {
         $link = new PDO($dsn, $username, $password, $options);
-        if (is_object($link)) {
-            //echo 'It worked!';
-        }
+        /*if (is_object($link)) {
+            echo 'It worked!';
+        }*/
         return $link;
     } catch (PDOException $e) {
         //echo "It didn't work, error: " . $e->getMessage();

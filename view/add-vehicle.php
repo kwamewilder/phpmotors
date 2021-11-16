@@ -1,92 +1,113 @@
 <?php
- 
-//Buil classification list
-$classList = "<select name='classificationId' id='classificationId'>";
-$classList .= '<option value ="">Please Choose</option>';
+
+//Build Select list
+
+$classifList = '<select name="classificationId">';
 foreach ($classifications as $classification) {
-   $classList .= "<option value='$classification[classificationId]'";
-   if(isset($classificationId)){
-   
-   if($classId['classificationId'] === $classificationId){
-     $classList .= ' selected ';
- }
-}   
-   $classList .= ">$classification[classificationName]</option>";
+    $classifList .= "<option value='$classification[classificationId]'";
+    if (isset($classificationId)) {
+        if($classification['classificationId'] === $classificationId){
+            $classifList .= ' selected ';
+        }  
+    }
+    $classifList .= "> $classification[classificationName]</option>";
 }
-$classList .= "</select>";
 
-?>
-<?php
+$classifList .= '</select>';
 
-if (isset($_SESSION['clientData']['clientLevel'])&&($_SESSION['clientData']['clientLevel'] != 3)) {
+if ($_SESSION['clientData']['clientLevel'] < 2){
     header('Location: /phpmotors/');
     exit;
 }
-?>
-<!DOCTYPE html>
-<html lang="en-us">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="/phpmotors/css/style.css" type="text/css" rel="stylesheet" media="screen">
-        <title>PHP Motors | Add Vehicle</title>
-    </head>
-    <!-- checks user level and if they are logged in -->
 
-    <body>
-        <header>
-            <?php
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php';
-            ?>
-        </header>
-        <nav class>
-            <?php
-              //require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/navigation.php';
-              echo $navList;
-            ?>
-        </nav>
-        <main>
-            <h1>Add Vehicle</h1>
-                <?php
-                if (isset($message)) {
-                echo $message;
-                }
-                ?>
-                <form action="/phpmotors/vehicles/index.php?action=addNewVehicle" method="post">
-                    <fieldset>
-                        <label>Classification</label><br>
-                        <?php echo $classList; ?> <br>
-                        <label>Make</label><br>
-                        <input type='text' name='invMake' id="invMake" <?php if(isset($invMake)){echo "value='$invMake'";} ?> required><br>
-                        <label>Model</label><br>
-                        <input type="text" name="invModel" id="invModel" <?php if(isset($invModel)){echo "value='$invModel'";} ?> required><br>
-                        <label>Description</label><br>
-                        <textarea rows="5" name='invDescription' id="invDescription">
-                        <?php if(isset($invDescription)){echo "value='$invDescription'";} ?>
-                        </textarea>
-                        <br>
-                        <label>Image</label><br>
-                        <input type="text" name="invImage" id="invImage" value="/phpmotors/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";} ?> required><br>
-                        <label>Thumbnail</label><br>
-                        <input type="text" name="invThumbnail" id="invThumbnail" value="/phpmotors/images/no-image-tn.png"<?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required><br>
-                        
-                        <label>Price</label><br>
-                        <input type="number" name="invPrice" id="invPrice" <?php if(isset($invPrice)){echo "value='$invPrice'";} ?> required><br>
-                        <label>Stock</label><br>
-                        <input type="number" name="invStock" id="invStock" <?php if(isset($invStock)){echo "value='$invStock'";} ?> required><br>
-                        <label>Color</label><br>
-                        <input type="text" name="invColor" id="invColor" <?php if(isset($invColor)){echo "value='$invColor'";} ?> required>
-                         <input type="submit" name="submit" class="field-button" id="regbtn" value="Add Vehicle">           
-                            <input type="hidden" name="action" value="addNewVehicle">
-                    </fieldset>
-                </form>
-        </main>
-        <footer>
-            <?php
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php';
-            ?>
-        </footer>
-    </body>
+?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Vehicle | PHP Motors</title>
+    <link rel="stylesheet" media="screen" href="/phpmotors/css/style.css">
+</head>
+
+<body>
+    <header>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+    </header>
+
+    <nav>
+        <?php echo $navList; ?>
+    </nav>
+
+    <h1>
+        Add Vehicle
+    </h1>
+
+    <?php
+    if (isset($message)) {
+        echo '<strong><p class="message">' . $message . '</p></strong>';
+    }
+    ?>
+
+    <form action="/phpmotors/vehicles/index.php" method="post">
+
+        <p>*Note all Fields are Required</p>
+
+        <fieldset>
+            <label class="top">Car classification</label>
+            <?php echo $classifList; ?><br>
+
+            <label class="top" for="invMake">Make</label>
+            <input class="top" type="text" name="invMake" id="invMake" <?php if (isset($invMake)) {
+                                                                            echo "value='$invMake'";
+                                                                        } ?> required>
+
+            <label class="top" for="invModel">Model</label>
+            <input class="top" type="text" name="invModel" id="invModel" <?php if (isset($invModel)) {
+                                                                                echo "value='$invModel'";
+                                                                            } ?> required>
+
+            <label class="top" for="invDescription">Description</label>
+            <textarea class="top" name="invDescription" id="invDescription" rows="5" cols="20" <?php if (isset($invDescription)) {echo "value='$invDescription'";}?> required></textarea>
+
+            <label class="top" for="invImage">Image Path</label>
+            <input class="top" type="text" name="invImage" id="invImage" value="phpmotors/images/no-image.png" required>
+
+            <label class="top" for="invThumbnail">Thumbnail Path</label>
+            <input class="top" type="text" name="invThumbnail" id="invThumbnail" value="phpmotors/images/no-image.png" required>
+
+            <label class="top" for="invPrice">Price</label>
+            <input class="top" type="text" name="invPrice" id="invPrice" <?php if (isset($invPrice)) {
+                                                                                echo "value='$invPrice'";
+                                                                            } ?> required>
+
+            <label class="top" for="invStock"># In Stock</label>
+            <input class="top" type="text" name="invStock" id="invStock" <?php if (isset($invStock)) {
+                                                                                echo "value='$invStock'";
+                                                                            } ?> required>
+
+            <label class="top" for="invColor">Color</label>
+            <input class="top" type="text" name="invColor" id="invColor" <?php if (isset($invColor)) {
+                                                                                echo "value='$invColor'";
+                                                                            } ?> required>
+
+            
+            <button class="SubmitBtn" type="submit" name="submit" id="addVBtn">Add Vehicle</button>
+
+            <input type="hidden" name="action" value="addVehicle-attempt">
+
+        </fieldset>
+
+    </form>
+    <div id="line"></div>
+
+    <Footer>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
+    </Footer>
+
+
+
+</body>
+
 </html>
-© 2021 GitHub, Inc.
-Term

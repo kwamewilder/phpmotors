@@ -1,8 +1,10 @@
 <?php
-if (!$_SESSION['loggedIn'] || $_SESSION['clientData']['clientLevel'] != 3) {
-    header('Location: ../index.php');
+
+if (isset($_SESSION['clientData']['clientLevel'])&&($_SESSION['clientData']['clientLevel'] > 2)) {
+    header('Location: /phpmotors/');
     exit;
 }
+
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +26,7 @@ if (!$_SESSION['loggedIn'] || $_SESSION['clientData']['clientLevel'] != 3) {
     </nav>
 
     <h1>
-        Add Classification
+        Add Car Classification
     </h1>
 
     <?php
@@ -36,13 +38,9 @@ if (!$_SESSION['loggedIn'] || $_SESSION['clientData']['clientLevel'] != 3) {
     <form action="/phpmotors/vehicles/index.php" method="post">
         <fieldset>
             <label class="top" for="Name">Classification Name</label>
-            <input class="top" type="text" name="classificationName" 
-            <?php if (isset($classificationName))
-            {                                                               
-            echo "value='$classificationName'";
-            } 
-            ?> 
-            id="Name" required>
+            <input class="top" type="text" name="classificationName" <?php if (isset($classificationName)) {
+                                                                            echo "value='$classificationName'";
+                                                                        } ?> id="Name" required>
             <button type="submit" value="addclassificationName">Add Classification</button>
             <input type="hidden" name="action" value="addclassificationName">
         </fieldset>

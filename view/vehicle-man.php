@@ -1,9 +1,16 @@
 <?php
-if ($_SESSION['clientData']['clientLevel'] < 2) {
- header('location: /phpmotors/');
- exit;
+
+if (($_SESSION['clientData']['clientLevel']) < 2) {
+    header('Location: /phpmotors/');
+    exit;
 }
-?><!DOCTYPE html>
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+}
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,9 +22,9 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
 </head>
 
 <body>
-<header>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
-</header>
+    <header>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+    </header>
 
     <nav>
         <?php echo $navList; ?>
@@ -28,7 +35,7 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
     </h1>
     <ul>
         <li>
-            <a href="/phpmotors/vehicles/index.php?action=add-classification">Add Classification</a>
+            <a href="/phpmotors/vehicles/index.php?action=classification">Add Classification</a>
         </li>
         <li>
             <a href="/phpmotors/vehicles/index.php?action=addVehicle">Add Vehicle</a>

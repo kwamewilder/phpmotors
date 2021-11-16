@@ -1,10 +1,10 @@
 <img src="/phpmotors/images/site/logo.png" alt="logo">
-
-
-
-
 <?php
-if (isset($_SESSION['clientData'])) {
+if (!isset($_SESSION['clientData'])) {
+    echo "<a href='/phpmotors/accounts/'>
+    <span class='cookie'> Welcome </span>
+    </a>";
+} else {
     echo "<a href='/phpmotors/accounts/'>
     <span class='cookie'> Welcome " .  $_SESSION['clientData']['clientFirstname'] . "</span>
     </a>";
@@ -13,6 +13,7 @@ if (isset($_SESSION['clientData'])) {
 ?>
 
 <?php
+
 if (isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE)) {
     echo
     '<p>
@@ -25,6 +26,3 @@ if (isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE)) {
     </p>';
 }
 ?>
-
-
-

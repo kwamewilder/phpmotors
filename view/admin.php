@@ -58,12 +58,16 @@ if (!$_SESSION['loggedIn']) {
 
             </ul>
 
-            
+            <h2>Account Management</h2>
+            <p>Use this link to update account information:</p>
+            <p><a href="/phpmotors/accounts/index.php?action=accountMod">Update Account Information</a></p>
+
             <?php
             if ($_SESSION['clientData']['clientLevel'] > 1) {
                 echo
-                '<p class="inventory_message"> Use this link to manage the inventory <br>
-            <a href="/phpmotors/view/vehicle-man.php">Vehicle Management</a></p>';
+                '<h2> Inventory Management </h2>
+            <p class="inventory_message"> Use this link to manage the inventory <br>
+            <a href="/phpmotors/vehicles/">Vehicle Management</a></p>';
             }
             ?>
         </div>
@@ -73,9 +77,9 @@ if (!$_SESSION['loggedIn']) {
     </main>
     <div id="line"></div>
 
-    <footer>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
-    </footer>
+    <Footer>
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
+    </Footer>
 
 
 
