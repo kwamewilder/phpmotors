@@ -68,7 +68,7 @@ function buildVehiclesDisplay($vehicles)
 function buildVehicleDetails($vehicleDetails)
 {
     $dv = '<div id="inv-details">';
-    $dv .= "<img src='$vehicleDetails[invImage-*]' alt='Image of $vehicleDetails[invMake] $vehicleDetails[invModel] on phpmotors.com'>";
+    $dv .= "<img src='$vehicleDetails[invImage]' alt='Image of $vehicleDetails[invMake] $vehicleDetails[invModel] on phpmotors.com'>";
     $dv .= "<div id='inv-text'>";
     $dv .= "<h2 class='detail-center'>$vehicleDetails[invMake] $vehicleDetails[invModel]</h2>";
     $invPrice = $vehicleDetails['invPrice'];
