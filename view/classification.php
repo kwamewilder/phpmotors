@@ -18,14 +18,8 @@
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/navigation.php'; ?>
     </nav>
     <main class="classifications">
-        <h1>
-            <?php if ($classificationName == "Trucks") {
-                echo "Truck Vehicles";
-            } else {
-                echo "$classificationName Vehicles";
-            }
-            ?>
-        </h1>
+        
+        <h1><?php echo $classificationName; ?> vehicles</h1>
 
         <?php if (isset($message)) {
             echo $message;
@@ -40,7 +34,7 @@
     <div id="line"></div>
 
     <Footer>
-        <?php require_once $_SERVER['DOCUMENT_ROOT'] . './phpmotors/common/footer.php'; ?>
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </Footer>
 
 

@@ -6,7 +6,7 @@
 session_start();
 
 
-require_once '../model/uploads-model.php';
+
 
 //Add database connection file
 require_once '../library/connections.php';
@@ -234,22 +234,19 @@ switch ($action) {
         /**************************Get Vehicle Information **************/
     case 'getVehicleInfo':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
-        $vehicleThumbnails = getThumbnailImages($invId);
-
+        
         $vehicleData = getVehicleInfo($invId);
-
-
 
         if (!isset($vehicleData)) {
             $message = "<p class='notice'>Sorry, no $vehicleData[invMake]$vehicleData[invModel] details could be found.</p>";
         } else {
             $vehicleDetails = buildVehicleDetails($vehicleData);
-            $thumbnails = buildThumbnailImages($vehicleThumbnails);
+            
 
-            //$vehicleThumbnails = buildThumbnailDetail($vehicleThumbnails);
+            include '../view/vehicle-detail.php';
         }
 
-        include '../view/vehicle-detail.php';
+        
         break;
         /*************************Default***********************/
 

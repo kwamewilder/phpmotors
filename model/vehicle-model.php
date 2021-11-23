@@ -143,33 +143,26 @@ function deleteVehicle($invId)
 
 function getVehiclesByClassification($classificationName)
 {
-
     $db = phpmotorsConnect();
-    //The use of the subquery to gain the classificationId so to pass it to the main query.
-    $sql = 'SELECT i.invMake, i.invModel, i.invDescription, img.imgPath, i.invPrice, i.invStock, i.invColor, i.invId FROM inventory i JOIN images img ON i.invId = img.invId
-    WHERE i.classificationId IN 
-    (SELECT classificationId FROM carclassification 
-    WHERE classificationName = :classificationName) AND img.imgPath LIKE "%-tn%" AND imgPrimary = 1';
+    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicles;
-}
+   }
+   
 
 
 function getVehicleInfo($invId)
 {
     $db = phpmotorsConnect();
-    $sql = 'SELECT i.invMake, i.invModel, i.invDescription, img.imgPath, i.invPrice, i.invStock, i.invColor, i.invId FROM inventory i JOIN images img ON i.invId = img.invId
-    WHERE i.invId IN 
-    (SELECT invId FROM inventory 
-    WHERE invId = :invId) AND img.imgPath NOT LIKE "%-tn%" AND imgPrimary = 1';
+    $sql = 'SELECT * FROM inventory WHERE invId = :invId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
-    $invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $invInfo;
 }
@@ -185,7 +178,3 @@ function getVehicles()
     $stmt->closeCursor();
     return $invInfo;
 }
-
-
-
-   ?>

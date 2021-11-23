@@ -36,7 +36,7 @@
                 <img class="img_button" src="/phpmotors/images/site/own_today.png" alt="button">
             </div>
         </div>
-        <img class="delorean" src="/phpmotors/images/delorean.jpg" alt="delorean">
+        <img class="delorean" src="/phpmotors/images/vehicles/delorean.jpg" alt="delorean">
 
     </section>
 

@@ -30,7 +30,7 @@ if (!$_SESSION['loggedIn']) {
     </h1>
     <?php
     if (isset($_SESSION['message'])) {
-        echo '<strong><p class="message">' . $_SESSION['message'] . '</p></strong>';
+        echo '<p class="message">' . $_SESSION['message'] . '</p>';
     }
     ?>
 
@@ -100,9 +100,9 @@ if (!$_SESSION['loggedIn']) {
     </form>
     <div id="line"></div>
 
-    <Footer>
+    <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
-    </Footer>
+    </footer>
 
 
     <script src="/phpmotors/js/account.js"></script>

@@ -29,16 +29,17 @@ function buildNavigation($classifications)
     return $navList;
 }
 
-// Build the classifications select list 
-function buildClassificationList($classifications){ 
-    $classificationList = '<select name="classificationId" id="classificationList">'; 
-    $classificationList .= "<option>Choose a Classification</option>"; 
-    foreach ($classifications as $classification) { 
-     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
-    } 
-    $classificationList .= '</select>'; 
-    return $classificationList; 
-   }
+//Finally got there with the classifications select list
+function buildClassificationList($classifications)
+{
+    $classificationList = '<select name="classificationId" id="classificationList">';
+    $classificationList .= "<option>Choose a Classification</option>";
+    foreach ($classifications as $classification) {
+        $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
+    }
+    $classificationList .= '</select>';
+    return $classificationList;
+}
 
 //Clean and return a string
 function checkString($string)
@@ -53,42 +54,32 @@ function buildVehiclesDisplay($vehicles)
 {
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
-        $dv .= "<a href='/phpmotors/vehicles/?action=getVehicleInfo&invId=$vehicle[invId]'>";
-        $dv .= '<li>';
-
-        $dv .= "<img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
-        $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
-        $dv .= "<span>" . "$" . number_format($vehicle['invPrice'], 2) . "</span>";
-        $dv .= '</li></a>';
+     $dv .= '<li>';
+     $dv .= "<a href='/phpmotors/vehicles/index.php?action=getVehicleInfo&invId=$vehicle[invId]'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
+     $dv .= '<hr>';
+     $dv .= "<a href='/phpmotors/vehicles/index.php?action=getVehicleInfo&invId=$vehicle[invId]'<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+     $dv .= "<span>$ $vehicle[invPrice]</span>";
+     $dv .= '</li>';
     }
     $dv .= '</ul>';
     return $dv;
-}
+   }
 
 function buildVehicleDetails($vehicleDetails)
 {
-    $detail = '<section>';
-    foreach ($vehicleDetails as $vehicleDetail) {
-        //$dv .= "<a href='/phpmotors/vehicles/?action=getVehicleInfo&invId=$vehicleDetail[invId]'";
-        $detail .= '<div class="left_wrapper">';
-        $detail .= "<h1>$vehicleDetail[invMake] $vehicleDetail[invModel]</h1>";
-        $detail .= "<img src='$vehicleDetail[imgPath]' alt='Image of $vehicleDetail[invMake] $vehicleDetail[invModel] on phpmotors.com'>";
-        $detail .= '</div>';
-
-
-        $detail .= '<div class="right_wrapper">';
-        $detail .= "<h2>Description</h2>";
-        $detail .= "<p>$vehicleDetail[invDescription]</p>";
-        $detail .= "<h2>Colour</h2>";
-        $detail .= "<p>$vehicleDetail[invColor]</p>";
-        $detail .= "<h2>Stock</h2>";
-        $detail .= "<p>$vehicleDetail[invStock]</p>";
-        $detail .= "<h2>Price</h2>";
-        $detail .= "<span>" . "$" . number_format($vehicleDetail['invPrice'], 2) . "</span>";
-        $detail .= "</div>";
-    }
-    $detail .= '</section>';
-    return $detail;
+    $dv = '<div id="inv-details">';
+    $dv .= "<img src='$vehicleDetails[invImage]' alt='Image of $vehicleDetails[invMake] $vehicleDetails[invModel] on phpmotors.com'>";
+    $dv .= "<div id='inv-text'>";
+    $dv .= "<h2 class='detail-center'>$vehicleDetails[invMake] $vehicleDetails[invModel]</h2>";
+    $invPrice = $vehicleDetails['invPrice'];
+    $invPrice = number_format($invPrice,2,'.',',');
+    $dv .= "<p class='detail-center'>Price: &#36;$invPrice</p>";
+    $dv .= "<p class='detail-center'>Color: $vehicleDetails[invColor]</p>";
+    $dv .= "<p class='detail-center'>Stock Available: $vehicleDetails[invStock]</p>";
+    $dv .= "<p id='vehicle-desc'>$vehicleDetails[invDescription]</p>";
+    $dv .= "</div>";
+$dv .= '</div>';
+return $dv;
 }
 
 function buildThumbnailImages($thumbnail)

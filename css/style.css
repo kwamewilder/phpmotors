@@ -324,36 +324,46 @@
     }
     /*********************Display Pages***************/
     
-    #inv-display {
-        margin: 2%;
+    #inv-display{
+        margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-    }
-    
-    #inv-display a {
-        /* margin: 0 auto; */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+       }
+       
+       #inv-display li{
+        margin-bottom: .5em;
+        border: 1px #ccc solid;
         list-style-type: none;
-        padding: .4rem;
-        border: 1px solid #ccc;
-        box-shadow: 2px 2px 1px #aaaaaa;
-        text-decoration: none;
-    }
-    
-    #inv-display a img {
-        display: flex;
-        width: 200px;
-        margin: 0 auto;
-    }
-    
-    #inv-display a span {
-        justify-content: center;
-        flex-wrap: nowrap;
-        padding: .4rem;
-    }
+        flex: 1 1 auto;
+       }
+       
+       #inv-display li img {
+           max-width: 100%;
+       }
+
+       #inv-display {
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+
+	#inv-display h2{
+		font-size: 1rem;
+	}
+
+	#inv-display li {
+		max-width: 200px;
+		flex: 1 0 auto;
+		text-align: center;
+		height: 250px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+      
+	#inv-display div {
+		width: 100%;
+	}
     /*******************Details Page*****************/
     
     section {
