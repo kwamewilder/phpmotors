@@ -1,4 +1,6 @@
 <?php
+// This is the Image Upload Controller.
+
 session_start();
 
 require_once '../library/connections.php';
@@ -10,7 +12,7 @@ require_once '../library/functions.php';
 // Get the array of classifications
 $classifications = getClassifications();
 // Build a navigation bar using the $classifications array
-$navList = buildNavigation($classifications);
+$navList = buildNav($classifications);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 if ($action == NULL) {
@@ -37,9 +39,9 @@ switch ($action) {
         $imageCheck = checkExistingImage($imgName);
 
         if ($imageCheck) {
-            $message = 'An image by that name already exists.';
+            $message = '<p class="notice">An image by that name already exists.</p>';
         } elseif (empty($invId) || empty($imgName)) {
-            $message = 'You must select a vehicle and image file for the vehicle.';
+            $message = '<p class="notice">You must select a vehicle and image file for the vehicle.</p>';
         } else {
             // Upload the image, store the returned path to the file
             $imgPath = uploadFile('file1');
@@ -49,9 +51,9 @@ switch ($action) {
 
             // Set a message based on the insert result
             if ($result) {
-                $message = 'The upload was successful.';
+                $message = '<p class="notice">The upload succeeded.</p>';
             } else {
-                $message = 'Sorry, the upload failed.';
+                $message = '<p class="notice">Sorry, the upload failed.</p>';
             }
         }
 
@@ -60,9 +62,7 @@ switch ($action) {
 
         // Redirect to this controller for default action
         header('location: .');
-
         break;
-
 
     case 'delete':
         // Get the image name and id
@@ -85,9 +85,9 @@ switch ($action) {
 
         // Set a message based on the delete result
         if ($remove) {
-            $message = "$filename was successfully deleted.";
+            $message = "<p class='notice'>$filename was successfully deleted.</p>";
         } else {
-            $message = "$filename was NOT deleted.";
+            $message = "<p class='notice'>$filename was NOT deleted.</p>";
         }
 
         // Store message to session
@@ -95,8 +95,8 @@ switch ($action) {
 
         // Redirect to this controller for default action
         header('location: .');
-
         break;
+
     default:
         // Call function to return image info from database
         $imageArray = getImages();
@@ -105,7 +105,7 @@ switch ($action) {
         if (count($imageArray)) {
             $imageDisplay = buildImageDisplay($imageArray);
         } else {
-            $imageDisplay = '<p class="message">Sorry, no images could be found.</p>';
+            $imageDisplay = '<p class="notice">Sorry, no images could be found.</p>';
         }
 
         // Get vehicles information from database
@@ -115,6 +115,5 @@ switch ($action) {
 
         include '../view/image-admin.php';
         exit;
-
         break;
 }

@@ -1,111 +1,83 @@
-<?php
-if (!$_SESSION['loggedIn']) {
-    header('Location: /phpmotors/index.php');
-    exit;
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Update | PHP Motors</title>
-    <link rel="stylesheet" media="screen" href="/phpmotors/css/style.css">
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+
+    <title>PHP Motors</title>
 </head>
 
 <body>
+    <?php
+    //check if the user is logged in
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        echo "<span></span>";
+    } else {
+        header("Location: /phpmotors/index.php");
+    }
+    ?>
     <header>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
     </header>
 
     <nav>
-        <?php echo $navList ?>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; 
+        echo $navList; ?>
     </nav>
 
-    <h1>
-        Account Update
-    </h1>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo '<p class="message">' . $_SESSION['message'] . '</p>';
-    }
-    ?>
+    <main>
+        <h3>Update your account information</h3>
+        <?php if (isset($_SESSION['account-message'])) {
+            echo $_SESSION['account-message'];
+        } ?>
+        <form method="POST" action="/phpmotors/accounts/index.php">
+            <label for="clientFirstname">First Name: </label>
+            <input type="text" id="clientFirstname" name="clientFirstname" required <?php if (isset($clientFirstname)) {
+                                                                                        echo "value='$clientFirstname'";
+                                                                                    } else if (isset($_SESSION['clientData']['clientFirstname'])) {
+                                                                                        echo "value='" . $_SESSION['clientData']['clientFirstname'] . "'";
+                                                                                    } ?>><br>
 
-    <!-- Update Information form -->
+            <label for="clientLastname">Last Name: </label>
+            <input type="text" id="clientLastname" name="clientLastname" required <?php if (isset($clientLastname)) {
+                                                                                        echo "value='$clientLastname'";
+                                                                                    } else if (isset($_SESSION['clientData']['clientLastname'])) {
+                                                                                        echo "value='" . $_SESSION['clientData']['clientLastname'] . "'";
+                                                                                    } ?>><br>
 
-    <form method="POST" action="/phpmotors/accounts/">
+            <label for="clientEmail">Email: </label>
+            <input type="email" id="clientEmail" name="clientEmail" required <?php if (isset($clientEmail)) {
+                                                                            echo "value='$clientEmail'";
+                                                                        } else if (isset($_SESSION['clientData']['clientEmail'])) {
+                                                                            echo "value='" . $_SESSION['clientData']['clientEmail'] . "'";
+                                                                        } ?>><br>
 
-        <fieldset>
+            <input type="hidden" name="clientId" value="<?php $_SESSION['clientData']['clientId']; ?>">
+            <input type="hidden" name="action" value="update">
+            <input type="submit" name="Update" value="update">
+        </form>
 
-            <label class="top" for="clientFirstname">First Name</label>
-            <input class="top" type="text" name="clientFirstname" id="clientFirstname" <?php if (isset($clientFirstname)) {
-                                                                                            echo "value='$clientFirstname'";
-                                                                                        } elseif (isset($_SESSION['clientData']['clientFirstname'])) {
-                                                                                            echo "value=" . $_SESSION['clientData']['clientFirstname'];
-                                                                                        } ?> placeholder="example 'Joe'" required>
-            <label class="top" for="clientLastname">Last Name</label>
-            <input class="top" type="text" name="clientLastname" id="clientLastname" <?php if (isset($clientLastname)) {
-                                                                                            echo "value='$clientLastname'";
-                                                                                        } elseif (isset($_SESSION['clientData']['clientLastname'])) {
-                                                                                            echo "value=" . $_SESSION['clientData']['clientLastname'];
-                                                                                        } ?> placeholder="example 'Bloggs'" required>
-            <label class="top" for="clientEmail">Email</label>
-            <input class="top" type="email" name="clientEmail" id="clientEmail" <?php if (isset($clientEmail)) {
-                                                                                    echo "value='$clientEmail'";
-                                                                                } elseif (isset($_SESSION['clientData']['clientEmail'])) {
-                                                                                    echo "value=" . $_SESSION['clientData']['clientEmail'];
-                                                                                }  ?> placeholder="someone@email.com" required>
+        <h3>Change your password</h3>
+        <?php if (isset($_SESSION['password-message'])) {
+            echo $_SESSION['password-message'];
+        } ?>
+        <form method="POST" action="/phpmotors/accounts/index.php">
+            <span>Make sure the new password is at least 8 characters and has at least 1 uppercase character,
+                1 number and 1 special character.</span><br>
+            <label for="clientPassword">Change password: </label>
+            <input type="password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
 
-            <button class="SubmitBtn" type="submit" name="submit" id="AcctBtn" value="accountUpdate">Update Account</button>
-
-            <input type="hidden" name="action" value="accountUpdate">
-            <input type="hidden" name="clientId" value="<?php if (isset($_SESSION['clientData']['clientId'])) {
-                                                            echo $_SESSION['clientData']['clientId'];
-                                                        } ?>">
-
-        </fieldset>
-
-
-    </form>
-
-    <?php
-    if (isset($message)) {
-        echo '<strong><p class="message">' . $message . '</p></strong>';
-    }
-    ?>
-
-    <!-- Update Password Form -->
-
-    <form method="POST" action="/phpmotors/accounts/">
-
-        <fieldset>
-
-            <label class="top" for="clientPassword">Password</label>
-            <span>Password must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character.</span>
-
-            <span>Note: Your original password will be changed.</span>
-
-            <input class="top" type="password" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
-            <button class="SubmitBtn" type="submit" name="submit" id="PWBtn" value="passwordUpdate">Update Password</button>
-            <input type="hidden" name="action" value="passwordUpdate">
-            <input type="hidden" name="clientId" value="<?php if (isset($_SESSION['clientData']['clientId'])) {
-                                                            echo $_SESSION['clientData']['clientId'];
-                                                        } ?>">
-        </fieldset>
-
-
-    </form>
-    <div id="line"></div>
+            <input type="hidden" name="clientId" value="<?php $_SESSION['clientData']['clientId']; ?>">
+            <input type="hidden" name="action" value="changePassword">
+            <input type="submit" name="Change Password" value="change password">
+        </form>
+    </main>
 
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </footer>
 
-
-    <script src="/phpmotors/js/account.js"></script>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
 </body>
 
 </html>

@@ -1,58 +1,56 @@
-<?php
-
-if (isset($_SESSION['clientData']['clientLevel'])&&($_SESSION['clientData']['clientLevel'] > 2)) {
-    header('Location: /phpmotors/');
-    exit;
-}
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Classification | PHP Motors</title>
-    <link rel="stylesheet" media="screen" href="/phpmotors/css/style.css">
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+
+    <title>PHP Motors</title>
 </head>
 
 <body>
     <header>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
     </header>
-
-    <nav>
-        <?php echo $navList ?>
-    </nav>
-
-    <h1>
-        Add Car Classification
-    </h1>
-
+    <!-- checks if user is logged in -->
     <?php
-    if (isset($message)) {
-        echo '<strong><p class="message">' . $message . '</p></strong>';
+    if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
+        header('Location: ../index.php');
+        exit;
     }
     ?>
+    
+    <nav>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; 
+        echo $navList; ?>
+    </nav>
 
-    <form action="/phpmotors/vehicles/index.php" method="post">
-        <fieldset>
-            <label class="top" for="Name">Classification Name</label>
-            <input class="top" type="text" name="classificationName" <?php if (isset($classificationName)) {
-                                                                            echo "value='$classificationName'";
-                                                                        } ?> id="Name" required>
-            <button type="submit" value="addclassificationName">Add Classification</button>
-            <input type="hidden" name="action" value="addclassificationName">
-        </fieldset>
-    </form>
-    <div id="line"></div>
+    <main>
+        <div>
+            <h1 class="center">Add Car Classification</h1>
+            <?php
+            if (isset($message)) {
+                echo $message;
+            }
+            ?>
+            <form action="/phpmotors/vehicles/index.php" method="post">
+                <label for="classificationName">Give a Classification Name</label><br>
+                <input <?php if (isset($classificationName)) {
+                            echo "value='$classificationName'";
+                        } ?> name="classificationName" id="classificationName" type="text" maxlength="30">
+                <p class="center">Please keep the classification under 30 characters.</p>
+                <br>
 
-    <Footer>
+                <input type="submit" value="Add Classification" id="btn">
+                <input type="hidden" name="action" value="adding-classification">
+            </form>
+        </div>
+    </main>
+
+    <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
-    </Footer>
+    </footer>
 
-
-
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
 </body>
 
 </html>

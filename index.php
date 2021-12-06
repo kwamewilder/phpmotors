@@ -1,51 +1,65 @@
 <?php
+//this is the main controller
 
-//Create or access a Session
+//create or access a session
 session_start();
 
-
-
-//This is the main controller
 // Get the database connection file
 require_once 'library/connections.php';
 // Get the PHP Motors model for use as needed
 require_once 'model/main-model.php';
-//Get the accounts model
-require_once 'model/accounts-model.php';
-
-//Get functions file
+//gets the function file
 require_once 'library/functions.php';
+
 
 // Get the array of classifications
 $classifications = getClassifications();
 
-//var_dump($classifications);
-//exit;
-
 // Build a navigation bar using the $classifications array
-$navList = buildNavigation($classifications);
+// $navList = '<ul>';
+// $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
+// foreach ($classifications as $classification) {
+//     $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . 
+//     "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+// }
+$navList = buildNav($classifications);
 
-
-$action = trim(filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING));
+$action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
-   $action = trim(filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING));
+    $action = filter_input(INPUT_GET, 'action');
 }
 
-//Check if the firstname cookie exists, get its value.
-if (isset($_COOKIE['firstname'])){
-   $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+// check if the first name cookie is available
+if(isset($_COOKIE['firstname'])){
+    $cookieFirstName = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
 }
 
+// check if the last name cookie is available
+if(isset($_COOKIE['lastname'])){
+    $cookieLastName = filter_input(INPUT_COOKIE, 'lastname', FILTER_SANITIZE_STRING);
+}
 
-
-
-//switch statement used to send to the 'home.php'  page. 
+// check if email cookie is available
+if(isset($_COOKIE['email'])){
+    $cookieLastName = filter_input(INPUT_COOKIE, 'email', FILTER_SANITIZE_EMAIL);
+}
 switch ($action) {
-   case 'template':
-      include './view/template.php';
-      break;
+    case 'something':
 
-   default:
-   include './view/home.php';
-      break;
+        break;
+
+    default:
+        include 'view/home.php';
+        break;
 }
+
+
+
+
+
+
+
+
+
+// var_dump($classifications);
+//     exit;

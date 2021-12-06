@@ -1,0 +1,1 @@
+<script src="/phpmotors/js/getDate.js"></script>

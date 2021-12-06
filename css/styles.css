@@ -1,0 +1,620 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Open+Sans&display=swap');
+
+html 
+{
+    font-family: "Dosis", sans-serif;
+    font-size: 22px;
+    box-sizing: border-box;
+}
+
+*,*:before,*:after 
+{
+    box-sizing: inherit;
+}
+
+h1,h2,h3,h4,h5,h6 
+{
+    font-family: "Open Sans", sans-serif;
+}
+
+.center 
+{
+    text-align: center;
+}
+
+#btn:hover 
+{
+    cursor: pointer;
+    background-color: #3a3a3a;
+    color: white;
+}
+
+
+header 
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+header a 
+{
+    grid-column: 2;
+    text-decoration: none;
+    justify-self: end;
+    margin: 10px;
+    color: #3a3a3a;
+    font-weight: 600;
+}
+
+header img 
+{
+    grid-column: 1;
+}
+
+.welcome 
+{
+    grid-column: 2;
+    justify-self: end;
+}
+
+
+.picture
+{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.headings 
+{
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+.picture ul 
+{
+    list-style: none;
+    margin-left: -20px;
+    z-index: 1;
+}
+
+.colorText:first-child 
+{
+    font-weight: 900;
+}
+
+.colorText 
+{
+    color: #4c96d7;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.picture button 
+{
+    border-radius: 0;
+    border: #3a3a3a 1px solid;
+    background-color: #a6cbeb;
+    color: #3a3a3a;
+    font-family: "Open Sans", sans-serif;
+    padding: 15px;
+    margin: 25px 30%;
+    font-size: 20px;
+    order: 3;
+    text-align: center;
+}
+
+.picture button:hover 
+{
+    cursor: pointer;
+    background-color: #4c96d7;
+}
+
+
+
+.picture img 
+{
+    width: 90%;
+    order: 2;
+    margin-top: -80px;
+}
+
+nav 
+{
+    background-color: #3a3a3a;
+    max-width: 100%;
+}
+
+nav ul 
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    list-style: none;
+    height: 50px;
+}
+
+nav ul li
+{
+    align-self: center;
+    padding: 10px;
+}
+
+nav ul li:first-child 
+{
+    margin-left: -20px;
+}
+
+nav ul li:last-child 
+{
+    margin-right: 20px;
+}
+
+nav ul li a 
+{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+nav ul a:hover 
+{
+    color: #3a3a3a;
+    padding: 15px 2px 15px 2px;
+    background-color: #4c96d7;
+}
+
+.reviewSection ul li 
+{
+    letter-spacing: 3px;
+    line-height: 2;
+    font-size: 18px;
+    font-weight: 550;
+}
+
+label 
+{
+    display: block;
+    margin: 10px auto; 
+    text-align: center;
+    margin: 0 auto;
+}
+
+input 
+{
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 60%;
+    border: 3px solid #4c96d7;
+    border-radius: 4px;
+}
+
+.upgradeSection .gridWrapper 
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.gridWrapper div 
+{
+    width: 100%;
+    height: 100%;
+    margin-left: -10px;
+}
+
+.imageBackground 
+{
+    background-color: #4c96d7;
+    padding: 10px 33% 10px;
+    margin-left: 10%;
+}
+
+#fluxCap img 
+{
+    padding-bottom: 25px;
+}
+
+#hubcaps img 
+{
+    padding-bottom: 25px;
+}
+
+#bumperStickers img 
+{
+    padding-bottom: 30px;
+}
+
+.gridWrapper div a 
+{
+    display: block;
+    text-align: center;
+    margin-top: -10px;
+    margin-left: 15px;
+}
+
+
+
+footer 
+{
+    border-top: 3px solid #3a3a3a;
+    text-align: center;
+}
+
+
+form 
+{
+    max-width: 100%;
+}
+
+
+
+.sign-in 
+{
+    font-weight: 800;
+    background-color: #4c96d7;
+    color: #3a3a3a;
+}
+
+.sign-in:hover 
+{
+    background-color: #3a3a3a;
+    color: #4c96d7;
+    cursor: pointer;
+}
+    
+
+.accountCreate
+{
+    text-decoration: none;
+}
+
+.accountCreate:hover 
+{
+    cursor: pointer;
+    color: #4c96d7;
+}
+
+#classificationId 
+{
+    margin-left: 45%;
+    width: 100px;
+    height: 50px;
+}
+
+#invDescription 
+{
+    margin-left: 18%;
+    width: 335px;
+    height: 300px;
+}
+
+
+#inv-display 
+{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#inv-display li 
+{
+    margin-bottom: 0.5em;
+    border: 1px #ccc solid;
+    list-style-type: none;
+    flex: 1 1 auto;
+}
+
+#inv-display li img 
+{
+    max-width: 100%;
+}
+
+.alt-images
+{
+    width:100%;
+    height: 100%;
+    margin: 10px;
+}
+
+
+.image-select-div
+{
+    max-width: 15%;
+    margin: 0 auto;
+}
+
+.adminList 
+{
+    list-style: none;
+}
+
+
+.main
+{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.vInfoImg
+{
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+#inv-details
+{
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+#inv-text p:nth-child(even)
+{
+    background-color:lightgray;
+    font-weight: 800;
+}
+
+.detail-center
+{
+    text-align: center;
+}
+
+#vehicle-desc
+{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#thumbnail-list
+{
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+
+
+
+@media only screen and (max-width: 420px) 
+{
+    nav ul 
+    {
+        justify-content: flex-start;
+    }
+
+    nav ul li 
+    {
+        margin: 0;
+        padding: 5px;
+        font-size: 18px;
+    }
+
+    .picture img 
+    {
+        margin-top: -60px;
+    }
+
+    .imageBackground {
+        padding: 10px 28% 10px;
+    }
+}
+
+
+
+
+
+@media only screen and (min-width: 1008px) 
+{
+    html 
+    {
+        background-image: url(../images/site/checkerboard.jpg);
+    }
+
+    body {
+        margin: 0 auto;
+        width: 70%;
+        /* height: 50%; */
+        background-color: #fff;
+        border: 5px solid #4c96d7;
+        border-radius: 2px;
+        margin-top: 10px;
+    }
+
+   
+
+    header a 
+    {
+        margin-right: 50px;
+    }
+
+    
+
+    nav ul 
+    {
+        justify-content: flex-start;
+        margin: 10px 25px;
+        padding: 5px;
+    }
+
+    .passwordInfo 
+    {
+        margin-left: 20%;
+    }
+
+   
+    #classificationId 
+    {
+        margin-left: 47%;
+    }
+
+    .upgradeSection .headings 
+    {
+        font-size: 20px;
+    }
+
+    .reviewSection .headings 
+    {
+        font-size: 20px;
+    }
+
+    .picture button 
+    {
+        padding: 15px;
+        margin: 5px 10px;
+        width: 20%;
+        font-size: 20px;
+        order: 2;
+        z-index: 1;
+    }
+
+    .picture img 
+    {
+        order: 3;
+        z-index: 0;
+    }
+
+    .fullsizeWrapper 
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .reviewSection 
+    {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .upgradeSection 
+    {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .imageBackground 
+    {
+        height: 80%;
+        padding: 10px 33% 10px;
+    }
+
+    #flames img 
+    {
+        padding-bottom: 27px;
+    }
+
+    #hubcaps img 
+    {
+        padding-bottom: 30px;
+    }
+
+    .reviewSection ul li 
+    {
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: 600;
+    }
+
+
+    #invDescription 
+    {
+        margin-left: 35%;
+        width: 335px;
+        height: 300px;
+    }
+
+   
+    #inv-display 
+    {
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+
+    #inv-display h2 
+    {
+        font-size: 1rem;
+        border-top: 3px solid black;
+    }
+
+    #inv-display li
+    {
+        max-width: 200px;
+        flex: 1 0 auto;
+        text-align: center;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #inv-display span 
+    {
+        width: 100%;
+        margin-top: -20px;
+    }
+
+    .alt-images
+    {
+        width:100%;
+        height: 50%;
+        transition: 2s width, height;
+        grid-column: 1;
+
+    }
+    
+    .alt-images:hover
+    {
+        height: 200%;
+        width: 200%;
+        transition: 2s width, height;
+
+    }
+
+    .main
+    {
+        display: grid;
+        grid-template-columns: 25% 1fr;
+        grid-template-rows: 1fr 1%;
+    }
+    .inv-details
+    {
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        grid-column: 2;
+    }
+
+    .vInfoImg
+    {
+        grid-column: 1;
+        width: 90%;
+        height: 90%;
+    }
+
+    #inv-text
+    {
+        grid-column: 2;
+    }
+
+    #thumbnail-list
+    {
+        max-width: 50%;;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        grid-column: 1;
+        grid-row: 1;
+        gap: 4px;
+    }
+   
+}
+

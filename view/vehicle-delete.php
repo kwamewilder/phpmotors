@@ -1,24 +1,21 @@
-<?php
-
-if (($_SESSION['clientData']['clientLevel']) < 2) {
-    header('Location: /phpmotors/');
-    exit;
-}
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if (isset($invInfo['invMake']) && isset($invInfo['invModel'])) {
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+
+    <title><?php if (isset($invInfo['invMake'])) {
                 echo "Delete $invInfo[invMake] $invInfo[invModel]";
-            } elseif (isset($invMake) && isset($invModel)) {
-                echo "Delete $invMake $invModel";
             } ?> | PHP Motors</title>
-    <link rel="stylesheet" media="screen" href="/phpmotors/css/style.css">
 </head>
+
+<!-- checks user level and if they are logged in -->
+<?php
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
+    header('Location: ../index.php');
+    exit;
+}
+?>
 
 <body>
     <header>
@@ -26,74 +23,56 @@ if (($_SESSION['clientData']['clientLevel']) < 2) {
     </header>
 
     <nav>
-        <?php echo $navList; ?>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; 
+        echo $navList; ?>
     </nav>
 
-    <h1>
-        <?php if (isset($invInfo['invMake']) && isset($invInfo['invModel'])) {
-            echo "Delete $invInfo[invMake] $invInfo[invModel]";
-        } elseif (isset($invMake) && isset($invModel)) {
-            echo "Delete $invMake $invModel";
-        } ?>
-    </h1>
+    <main>
+        <div class="main_content">
+            <h1><?php if (isset($invInfo['invMake'])) {
+                    echo "Delete $invInfo[invMake] $invInfo[invModel]";
+                } ?></h1>
+            <?php
+            if (isset($message)) {
+                echo $message;
+            }
+            ?>
+            <p>Are you sure this is the correct vehicle you want to delete? Once removed it cannot be recovered.</p>
+            <form action="/phpmotors/vehicles/index.php" method="post">
 
-    <?php
-    if (isset($message)) {
-        echo '<strong><p class="message">' . $message . '</p></strong>';
-    }
-    ?>
+                <label for="invMake">Make</label><br>
+                <input <?php
+                        if (isset($invInfo['invMake'])) {
+                            echo "value='$invInfo[invMake]'";
+                        } ?> type="text" id="invMake" name="invMake" readonly><br>
 
-    <form action="/phpmotors/vehicles/index.php" method="post">
+                <label for="invModel">Model</label><br>
+                <input <?php
+                        if (isset($invInfo['invModel'])) {
+                            echo "value='$invInfo[invModel]'";
+                        } ?> type="text" id="invModel" name="invModel" readonly><br>
 
-        <p>*Note all Fields are Required</p>
+                <label for="invDescription">Description</label><br>
+                <textarea rows="2" cols="20" id="invDescription" name="invDescription" readonly><?php
+                                                                                                if (isset($invInfo['invDescription'])) {
+                                                                                                    echo "value='$invInfo[invDescription]'";
+                                                                                                } ?>></textarea><br>
 
-        <fieldset>
-            <label class="top">Car classification</label>
-            <?php echo $classifList; ?><br>
+                <input type="submit" name="submit" value="Delete Vehicle" id="btn">
+                <input type="hidden" name="action" value="deleteVehicle">
+                <input type="hidden" name="invId" value="<?php if (isset($invInfo['invId'])) {
+                                                                echo $invInfo['invId'];
+                                                            } ?>">
 
-            <label class="top" for="invMake">Make</label>
-            <input class="top" type="text" readonly name="invMake" id="invMake" <?php if (isset($invMake)) {
-                                                                            echo "value='$invMake'";
-                                                                        } elseif (isset($invInfo['invMake'])) {
-                                                                            echo "value='$invInfo[invMake]'";
-                                                                        } ?>>
+            </form>
+        </div>
+    </main>
 
-            <label class="top" for="invModel">Model</label>
-            <input class="top" type="text" name="invModel" id="invModel" <?php if (isset($invModel)) {
-                                                                                echo "value='$invModel'";
-                                                                            } elseif (isset($invInfo['invModel'])) {
-                                                                                echo "value='$invInfo[invModel]'";
-                                                                            } ?>>
-
-            <label class="top" for="invDescription">Description</label>
-            <textarea class="top" name="invDescription" id="invDescription" ><?php if (isset($invDescription)) {
-                                                                                            echo $invDescription;
-                                                                                        } elseif (isset($invInfo['invDescription'])) {
-                                                                                            echo $invInfo['invDescription'];
-                                                                                        } ?></textarea>
-
-            
-
-            <button class="SubmitBtn" type="submit" name="submit" id="addVBtn" value="Delete Vehicle">Delete Vehicle</button>
-
-            <input type="hidden" name="action" value="deleteVehicle">
-            <input type="hidden" name="invId" value="<?php if (isset($invInfo['invId'])) {
-                                                            echo $invInfo['invId'];
-                                                        } elseif (isset($invId)) {
-                                                            echo $invId;
-                                                        } ?>">
-
-        </fieldset>
-
-    </form>
-    <div id="line"></div>
-
-    <Footer>
+    <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
-    </Footer>
+    </footer>
 
-
-
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
 </body>
 
 </html>

@@ -1,88 +1,50 @@
-<?php
-
-if (!$_SESSION['loggedIn']) {
-    header('Location: /phpmotors/index.php');
-    exit;
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Motors | Admin</title>
-    <link rel="stylesheet" media="screen" href="/phpmotors/css/style.css">
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+    <title>PHP Motors</title>
 </head>
 
 <body>
     <header>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+        <?php
+        //check if the user is logged in
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            echo "<span></span>";
+        } else {
+            header("Location: /phpmotors/index.php");
+        } ?>
     </header>
 
     <nav>
-        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/navigation.php'; ?>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; 
+        echo $navList; ?>
     </nav>
 
-    <main>
-
+    <main class="center">
+        <?php echo "<h1>logged in " . $_SESSION['clientData']['clientFirstname'] . " " . $_SESSION['clientData']['clientLastname'] . "</h1>"; ?>
+        <a href="/phpmotors/accounts/index.php?action=updateUser">Update Account</a>
+        <?php echo "<ul class='adminList'>
+                        <li> Firstname: " . $_SESSION['clientData']['clientFirstname'] . "</li>
+                        <li> Lastname: " . $_SESSION['clientData']['clientLastname'] . "</li>
+                        <li> Email: " . $_SESSION['clientData']['clientEmail'] . "</li>
+                    </ul>"; ?>
         <?php
-        if (isset($_SESSION['clientData']['clientFirstname'])) {
-            echo '<p class="message"><strong>Welcome ' . $_SESSION['clientData']['clientFirstname'] . '</strong></p>';
+        if ($_SESSION['clientData']['clientLevel'] == 3) {
+            echo "<h2>Inventory Management</h2>";
+            echo "<p>Use this link to manage the inventory.</p>";
+            echo "<span><a href='/phpmotors/vehicles/'>Vehicle Management</a></span>";
         }
         ?>
-
-        <h1>
-            <?php echo $_SESSION['clientData']['clientFirstname'] . ' ' . $_SESSION['clientData']['clientLastname']; ?>
-        </h1>
-
-        <?php if (isset($_SESSION['message'])) {
-            echo '<p class="message"><strong>' . $_SESSION['message'] . '</strong></p>';
-        }
-        ?>
-
-        <p> You are logged in.</p>
-        <div class="admin_details">
-            <ul>
-                <li>
-                    Firstname: <?php echo $_SESSION['clientData']['clientFirstname'];  ?>
-                </li>
-                <li>
-                    Lastname: <?php echo $_SESSION['clientData']['clientLastname']; ?>
-                </li>
-                <li>
-                    Email: <?php echo $_SESSION['clientData']['clientEmail']; ?>
-                </li>
-
-            </ul>
-
-            <h2>Account Management</h2>
-            <p>Use this link to update account information:</p>
-            <p><a href="/phpmotors/accounts/index.php?action=accountMod">Update Account Information</a></p>
-
-            <?php
-            if ($_SESSION['clientData']['clientLevel'] > 1) {
-                echo
-                '<h2> Inventory Management </h2>
-            <p class="inventory_message"> Use this link to manage the inventory <br>
-            <a href="/phpmotors/vehicles/">Vehicle Management</a></p>';
-            }
-            ?>
-        </div>
-
-
-
     </main>
-    <div id="line"></div>
 
-    <Footer>
-        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
-    </Footer>
+    <footer>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
+    </footer>
 
-
-
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
 </body>
 
 </html>

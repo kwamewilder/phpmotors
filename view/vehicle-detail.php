@@ -2,15 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if (isset($vehicleDetails['invMake']) && isset($vehicleDetails['invModel'])) {
-                echo "$vehicleDetails[invMake] $vehicleDetails[invModel]";
-            } elseif (isset($invMake) && isset($invModel)) {
-                echo "$invMake $invModel";
-            } ?> | PHP Motors</title>
-    <link rel="stylesheet" media="screen" href="/phpmotors/css/style.css">
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+
+    <title>PHP Motors</title>
 </head>
 
 <body>
@@ -19,41 +13,32 @@
     </header>
 
     <nav>
-        <?php echo $navList; ?>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; 
+        echo $navList; ?>
     </nav>
 
-    <?php if (isset($vehicleDetails['invMake']) && isset($vehicleDetails['invModel'])) {
-        echo "$vehicleDetails[invMake] $vehicleDetails[invModel]";
-    } elseif (isset($invMake) && isset($invModel)) {
-        echo "$invMake $invModel";
-    } ?>
+    <main>
+        <h1 class="center">Vehicle Details</h1>
+        <section class="main">
 
 
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo '<strong><p class="message">' . $_SESSION['message'] . '</p></strong>';
-    }
-    ?>
-    <main class="main_details">
+            <?php
+            if (!empty($vehicleDetailsDisplay)) {
+                echo $vehicleDetailsDisplay;
+            }
+            if (isset($thumbnailsList)) {
+                echo $thumbnailsList;
+            }
+            ?>
 
-
-        <?php if (isset($vehicleDetails)) {
-            echo $vehicleDetails;
-        }    ?>
-        <?php if (isset($thumbnails)) {
-            echo $thumbnails;
-        }
-        ?>
+        </section>
     </main>
 
-    <div id="line"></div>
-
-    <Footer>
+    <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
-    </Footer>
+    </footer>
 
-
-
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
 </body>
 
 </html>

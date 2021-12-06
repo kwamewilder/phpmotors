@@ -1,28 +1,6 @@
-<img src="/phpmotors/images/site/logo.png" alt="logo">
-<?php
-if (!isset($_SESSION['clientData'])) {
-    echo "<a href='/phpmotors/accounts/'>
-    <span class='cookie'> Welcome </span>
-    </a>";
-} else {
-    echo "<a href='/phpmotors/accounts/'>
-    <span class='cookie'> Welcome " .  $_SESSION['clientData']['clientFirstname'] . "</span>
-    </a>";
-}
-
-?>
-
-<?php
-
-if (isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE)) {
-    echo
-    '<p>
-        <a href="/phpmotors/accounts/index.php?action=Logout">Logout</a>
-    </p>';
-} else {
-    echo
-    '<p>
-        <a href="/phpmotors/accounts/index.php?action=Login-page">My Account</a>
-    </p>';
-}
-?>
+<img src="/phpmotors/images/site/logo.png" alt="Logo for PHP Motors">
+<a href="/phpmotors/accounts/index.php?action=login" title="LOGIN FOR YOUR ACCOUNT">My Account</a>
+<?php if (isset($_SESSION['loggedin'])) {
+            echo "<span class='welcome'><a href='/phpmotors/accounts/index.php?action=Loggedin'>Welcome " . $_SESSION['clientData']['clientFirstname'] . "</a></span>";
+            echo "<span class='welcome'><a href='/phpmotors/accounts/index.php?action=Logout'> | Logout </a></span>";
+        } ?>

@@ -1,82 +1,56 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="/phpmotors/css/style.css" type="text/css" rel="stylesheet" media="screen">
-        <title>PHP Motors | Register</title>
-    </head>
-    <body>
-        <header>
-            <?php
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php';
-            ?>
-        </header>
-        <nav class>
-            <?php
-              //require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/navigation.php';
-              echo $navList;
-            ?>
-        </nav>
-        <main>
-            
-            <div class="login">
-                <?php
-                     if (isset($message)) {
-                        echo $message;
-                     }
-                ?>
-                <form action="/phpmotors/accounts/index.php" method="post" >
-                        <h1> Registration</h1>
-                        <p> All fields required </p>
+<head>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+    <title>PHP Motors</title>
+</head>
 
-                        <div class="field">
-                            <label> First name:
-                            <br>
-                            <input type="text" name="clientFirstname" id="fname" <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";}  ?> required>
+<body>
+    <header>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+    </header>
 
-                            </label>
-                        </div>   
-                        
+    <nav>
+        <?php //require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/nav.php'; 
+        echo $navList; ?>
+    </nav>
 
-                        <div class="field">
-                            <label>Last name:
-                            <br>
-                            <input type="text" name="clientLastname" id="lname" <?php if(isset($clientLastname)){echo "value='$clientLastname'";}  ?>  required>
-                            <br>
-                            </label>
-                        </div>
+    <main>
 
-                        <div class="field">
-                            <label>Email address: 
-                            <br>
-                            <input type="email" name="clientEmail" id="email" <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required >
-                            <br>
-                            </label>
-                        </div>
+        <?php
+        if (isset($message)) {
+            echo $message;
+        }
+        ?>
 
-                        <div class="field">
-                        <label>Password:
-                            <br>
-                            <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-                            <input type="password" name="clientPassword" id="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-                            <br>
-                            </label>
-                        </div>
+        <form method="post" action="/phpmotors/accounts/index.php">
+                <fieldset>
+                    <legend>Enter your information</legend>
+                    <label for="firstName"><span>First Name:</span></label>
+                    <input <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";} ?> placeholder="First Name" type="text" id="firstName" name="clientFirstname" required>
 
-                        <div>
-                            <input type="submit" name="submit" class="field-button" id="regbtn" value="Register">           
-                            <input type="hidden" name="action" value="register">
-                        </div>
-                    </form>
-            </div>
-        </main>
-        
-        <footer>
-            <?php
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php';
-            ?>
-        </footer>
-    </body>
+                    <label for="lastName"><span>Last name:</span></label>
+                    <input <?php if(isset($clientLastname)){echo "value='$clientLastname'";} ?>placeholder="Last Name" type="text" id="lastName" name="clientLastname" required>
+
+                    <label for="email"><span>Email:</span></label>
+                    <input <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> placeholder="Email" type="email" id="email" name="clientEmail" required>
+
+                    <label for="password"><span>Password: </span></label>
+                    <input type="password" id="password" name="clientPassword" placeholder="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                    <span class="passwordInfo">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+
+                    <input type="submit" name="submit" id="regBtn" class="sign-in" value="Register">
+                    <input type="hidden" name="action" value="register">
+                </fieldset>
+            </form>
+    </main>
+
+    <footer>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
+    </footer>
+
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
+</body>
+
 </html>
