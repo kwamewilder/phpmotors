@@ -38,6 +38,8 @@
             echo "<span><a href='/phpmotors/vehicles/'>Vehicle Management</a></span>";
         }
         ?>
+        <h3>Your Reviews</h3>
+        <?php echo $reviewHTML; ?>
     </main>
 
     <footer>

@@ -3,18 +3,20 @@
 //start a session
 session_start();
 
-
 // Get the database connection file
 require_once '../library/connections.php';
 // Get the PHP Motors model for use as needed
 require_once '../model/main-model.php';
-// Get the vehicles model
+// Get the vehicle model
 require_once '../model/vehicle-model.php';
-// get the functions file
+// Get the account model.
+require_once '../model/accounts-model.php';
+// Get the review model
+require_once '../model/reviews-model.php';
+// Get the functions library
 require_once '../library/functions.php';
-//get the uploads model function
-require_once '../model/uploads-model.php';
 
+require_once '../model/uploads-model.php';
 
 // // Get the array of classifications
 $classifications = getClassifications();
@@ -135,7 +137,7 @@ switch ($action) {
 
         $deleteResult = deleteVehicle($invId);
         if ($deleteResult) {
-            $message = "<p class='notice'>Congratulations the, $invMake $invModel was	successfully deleted.</p>";
+            $message = "<p class='notice'>Congratulations the, $invMake $invModel was   successfully deleted.</p>";
             $_SESSION['message'] = $message;
             header('location: /phpmotors/vehicles/');
             exit;
@@ -202,10 +204,20 @@ switch ($action) {
         $thumbnailsPath = getThumbnails($invId);
         $thumbnailsList = thumbnailHTML($thumbnailsPath);
 
+        //gets review
+        $reviewList = getInventoryReviews($invId);
+
+        // Build the html for the review list.
+        $reviewHTML = '<div class = "reviews">';
+        foreach ($reviewList as $review) {
+            $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
+        }
+        $reviewHTML .= "</div>";
+
         // build html view in the vehicle-detail page
         if (!empty($vehicle)) {
             $vehicleDetailsDisplay = showVehicleInfo($vehicle);
-            include '../view/vehicle-detail.php';            
+            include '../view/vehicle-detail.php';
         } else {
             $message = "<p>Sorry, $vehicle[invMake] $vehicle[invModel] wasn't found in the registers.";
         }

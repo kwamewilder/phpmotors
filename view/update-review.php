@@ -1,46 +1,21 @@
-<?php
-// Build a dynamic select dropdown list using the $classifications array
-$selectList = '<select name="classificationId" id="classificationId" required>';
-$selectList .= '<option value="">-Choose Car Classification-</option>';
-foreach ($classifications as $classification) {
-    $selectList .= "<option value='$classification[classificationId]'";
-    if (isset($classificationId)) {
-        if ($classification['classificationId'] === $classificationId) {
-            $selectList .= ' selected ';
-        }
-    } elseif (isset($invInfo['classificationId'])) {
-        if ($classification['classificationId'] === $invInfo['classificationId']) {
-            $selectList .= ' selected ';
-        }
-    }
-    $selectList .= ">$classification[classificationName]</option>";
-}
-$selectList .= '</select>';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
-
-    <title><?php if (isset($invInfo['invMake']) && isset($invInfo['invModel'])) {
-                echo "Modify $invInfo[invMake] $invInfo[invModel]";
-            } elseif (isset($invMake) && isset($invModel)) {
-                echo "Modify $invMake $invModel";
-            } ?> | PHP Motors</title>
+    <title>PHP Motors</title>
 </head>
-
-<!-- checks user level and if they are logged in -->
-<?php
-if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
-    header('Location: ../index.php');
-    exit;
-}
-?>
 
 <body>
     <header>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+        <?php
+        //check if the user is logged in
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            echo "<span></span>";
+        } else {
+            header("Location: /phpmotors/index.php");
+        } ?>
     </header>
 
     <nav>

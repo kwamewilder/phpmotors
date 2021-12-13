@@ -1,46 +1,21 @@
-<?php
-// Build a dynamic select dropdown list using the $classifications array
-$selectList = '<select name="classificationId" id="classificationId" required>';
-$selectList .= '<option value="">-Choose Car Classification-</option>';
-foreach ($classifications as $classification) {
-    $selectList .= "<option value='$classification[classificationId]'";
-    if (isset($classificationId)) {
-        if ($classification['classificationId'] === $classificationId) {
-            $selectList .= ' selected ';
-        }
-    } elseif (isset($invInfo['classificationId'])) {
-        if ($classification['classificationId'] === $invInfo['classificationId']) {
-            $selectList .= ' selected ';
-        }
-    }
-    $selectList .= ">$classification[classificationName]</option>";
-}
-$selectList .= '</select>';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
-
-    <title><?php if (isset($invInfo['invMake']) && isset($invInfo['invModel'])) {
-                echo "Modify $invInfo[invMake] $invInfo[invModel]";
-            } elseif (isset($invMake) && isset($invModel)) {
-                echo "Modify $invMake $invModel";
-            } ?> | PHP Motors</title>
+    <title>PHP Motors</title>
 </head>
-
-<!-- checks user level and if they are logged in -->
-<?php
-if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
-    header('Location: ../index.php');
-    exit;
-}
-?>
 
 <body>
     <header>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/header.php'; ?>
+        <?php
+        //check if the user is logged in
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            echo "<span></span>";
+        } else {
+            header("Location: /phpmotors/index.php");
+        } ?>
     </header>
 
     <nav>
@@ -49,9 +24,9 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
     </nav>
 
     <main>
-    <h1 class="center">Edit Post</h1>
+    <h1 class="center">Confirm Delete</h1>
             <p class="center">
-                Please edit your post.
+                Do you want to delete this post?
             </p>
             <?php
             if (isset($message)) {
@@ -70,15 +45,14 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
                 <br>
                 <label>Review</label>
                 <br>
-                <textarea id="review" name="editReview" rows="4" cols="50" required><?php echo $review['reviewText'];  ?></textarea>
+                <textarea id="review" name="newReview" rows="4" cols="50" readonly><?php echo $review['reviewText'];  ?></textarea>
                 <br>
-                <input type="submit" name="submit" id="regbtn" value="Update Review">
+                <input type="submit" name="submit" id="regbtn" value="Delete Review">
                 <!-- Add the action name - value pair -->
-                <input type="hidden" name="action" value="editReview">
+                <input type="hidden" name="action" value="deleteReview">
                 <input type="hidden" name="review" <?php echo 'value="'.$reviewId.'"' ?>>
             </form>
     </main>
-
 
     <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>

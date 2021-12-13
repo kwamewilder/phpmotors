@@ -256,3 +256,32 @@ function thumbnailHTML($thumbnailList)
     $html .= "</span>";
     return $html;
 }
+
+function buildReview($clientFirstName, $clientLastName, $date, $reviewText){
+    $htmlText = "<p class='center review-portion'>";
+    
+    // Put in the clients name.
+    $htmlText .= substr($clientFirstName, 0, 1).". ".$clientLastName;
+
+    // Add a brake and then put in the date.
+    $timestamp = strtotime($date);
+    $htmlText .= "<br>Posted on: ".date('m/d/Y H:i:s', $timestamp);
+
+    // Add another brake and then post the review text.
+    $htmlText .= "<br><br>".$reviewText;
+
+    $htmlText .= "</p>";
+    return $htmlText;
+}
+
+// The function builds a block of html for the review list.
+function buildReviewItem($reviewDate, $reviewId) {
+    $htmlText = '<li>';
+    $timestamp = strtotime($reviewDate);
+    $htmlText .= 'Review Created on: '.date('m/d/Y H:i:s', $timestamp);
+    $htmlText .= ' <a href = "/phpmotors/reviews/index.php?action=confirmEdit&review='.$reviewId.'">Edit</a>';
+    $htmlText .= ' | ';
+    $htmlText .= '<a href = "/phpmotors/reviews/index.php?action=confirmDelete&review='.$reviewId.'">Delete</a>';
+    $htmlText .= '</li>';
+    return $htmlText;
+}

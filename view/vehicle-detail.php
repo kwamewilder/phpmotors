@@ -31,7 +31,32 @@
             }
             ?>
 
-        </section>
+       </section>
+        <?php if (isset($_SESSION['loggedin']) == false)
+        {
+            echo "You can leave a review if logged in";
+        }else{
+        echo '<form action = "/phpmotors/reviews/index.php" method="POST" >';
+                echo "\r\n<label>Add your own review</label>";
+                echo "\r\n<br>";
+                echo "\r\n<textarea id = 'review' name = 'newReview' rows = '4' cols = '50' required>";
+                echo  '</textarea>';
+                echo "\r\n<br>";
+                echo "\r\n<input type = 'submit' name='submit' id='regbtn' value='Add Review'/> ";
+                echo "\r\n<input type = 'hidden' name='action' value='addReview'/> ";
+                echo "\r\n<input type = 'hidden' name='userId'";
+                echo ' value= "'.$_SESSION['clientData']['clientId'].'" ' . '/> ';
+                echo "\r\n<input type = 'hidden' name='carId' ";
+                echo 'value = "' . $invId . '"' . '/>';
+                echo "\r\n</form>";
+        }
+        ?>
+            <?php 
+                // Put the reviews on the page.
+                if (isset($reviewHTML)){
+                    echo $reviewHTML;
+                }
+            ?>
     </main>
 
     <footer>
