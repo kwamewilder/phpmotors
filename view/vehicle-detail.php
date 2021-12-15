@@ -34,10 +34,10 @@
        </section>
         <?php if (isset($_SESSION['loggedin']) == false)
         {
-            echo "You can leave a review if logged in";
+            echo "Login to leave a review";
         }else{
         echo '<form action = "/phpmotors/reviews/index.php" method="POST" >';
-                echo "\r\n<label>Add your own review</label>";
+                echo "\r\n<label>Add a review</label>";
                 echo "\r\n<br>";
                 echo "\r\n<textarea id = 'review' name = 'newReview' rows = '4' cols = '50' required>";
                 echo  '</textarea>';
@@ -63,7 +63,7 @@
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </footer>
 
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
+    
 </body>
 
 </html>

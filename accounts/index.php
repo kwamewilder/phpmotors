@@ -118,7 +118,7 @@ switch ($action) {
         $reviewList = getClientReviews($_SESSION['clientData']['clientId']);
         $reviewHTML = '<ul>';
         foreach ($reviewList as $review) {
-            $reviewHTML .= buildReviewItem($review['reviewDate'], $review['reviewId']);
+            $reviewHTML .= adminReview($review['reviewDate'], $review['reviewId'],$reviewText);
         }
         $reviewHTML .= '</ul>';
         
@@ -190,7 +190,7 @@ switch ($action) {
         $reviewList = getClientReviews($_SESSION['clientData']['clientId']);
         $reviewHTML = '<ul>';
         foreach ($reviewList as $review) {
-            $reviewHTML .= buildReviewItem($review['reviewDate'], $review['reviewId']);
+            $reviewHTML .= adminReview($review['reviewDate'], $review['reviewId'], $review['reviewText']);
         }
         $reviewHTML .= '</ul>';
 

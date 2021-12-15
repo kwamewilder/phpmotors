@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/head.php'; ?>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/phpmotors/css/normalize.css" media="screen">
+    <link rel="stylesheet" href="/phpmotors/css/styles.css" media="screen">
     <title>PHP Motors</title>
 </head>
 
@@ -18,10 +22,10 @@
     <section class="picture">
     <h1 class="headings">Welcome to PHP Motors!</h1>
     <ul class="featuresOfCar">
-        <li class="colorText">DMC Delorean</li>
-        <li class="colorText">3 Cup holders</li>
-        <li class="colorText">Superman doors</li>
-        <li class="colorText">Fuzzy dice!</li>
+        <li class="cText">DMC Delorean</li>
+        <li class="cText">3 Cup holders</li>
+        <li class="cText">Superman doors</li>
+        <li class="cText">Fuzzy dice!</li>
     </ul>
     <button>Own Today</button>
     <img src="/phpmotors/images/vehicles/delorean.jpg" alt="Image of the Delorean car.">
@@ -70,7 +74,7 @@
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </footer>
 
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
+   
 </body>
 
 </html>

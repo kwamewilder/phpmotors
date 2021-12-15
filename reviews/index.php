@@ -36,7 +36,7 @@ switch ($action){
 
         
         if(empty($newReview) || empty($clientId) || empty($vehicleId)){
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $message = '<p>Provide information for empty fields.</p>';
             header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit;
         }
@@ -73,7 +73,7 @@ switch ($action){
 
         
         if(empty($reviewId) || empty($reviewText)){
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $message = '<p>Provide information for all fields.</p>';
             include '/phpmotors/view/update-review.php';
             exit;
         }
@@ -94,8 +94,6 @@ switch ($action){
     case 'confirmDelete':
         // Get user input.
         $reviewId = filter_input(INPUT_GET, 'review', FILTER_SANITIZE_NUMBER_INT);
-
-       
         $review = getReview($reviewId);
 
         
@@ -105,8 +103,6 @@ switch ($action){
     case 'deleteReview':
         // Get user input.
         $reviewId = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_NUMBER_INT);
-
-        
         $deleteReport = deleteReview($reviewId);
 
         if ($deleteReport == 1){
@@ -120,6 +116,7 @@ switch ($action){
         break;
 
     default:
+
         if ($_SESSION['loggedin']){
             include '../view/admin.php';
             exit;

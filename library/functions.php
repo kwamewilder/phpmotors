@@ -275,13 +275,17 @@ function buildReview($clientFirstName, $clientLastName, $date, $reviewText){
 }
 
 // The function builds a block of html for the review list.
-function buildReviewItem($reviewDate, $reviewId) {
-    $htmlText = '<li>';
+function adminReview( $reviewDate, $reviewId, $reviewText) {
+    $htmlText = '<li>'; 
     $timestamp = strtotime($reviewDate);
-    $htmlText .= 'Review Created on: '.date('m/d/Y H:i:s', $timestamp);
+    $htmlText .= '<i> Review Created on: <i>'.date('m/d/Y H:i:s', $timestamp);
+    $htmlText .= ' <br>';
+    $htmlText .= $reviewText;
+    $htmlText .= ' <br>'; 
     $htmlText .= ' <a href = "/phpmotors/reviews/index.php?action=confirmEdit&review='.$reviewId.'">Edit</a>';
     $htmlText .= ' | ';
     $htmlText .= '<a href = "/phpmotors/reviews/index.php?action=confirmDelete&review='.$reviewId.'">Delete</a>';
     $htmlText .= '</li>';
+    $htmlText .= ' <br>';
     return $htmlText;
 }

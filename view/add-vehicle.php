@@ -63,7 +63,7 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
                         } ?> type="text" id="invModel" name="invModel"><br>
 
                 <label for="invDescription">Description</label><br>
-                <textarea rows="2" cols="20" id="invDescription" name="invDescription"><?php if (isset($_POST['invDescription'])) {
+                <textarea rows="2" cols="25" id="invDescription" name="invDescription"><?php if (isset($_POST['invDescription'])) {
                                                                                             echo htmlentities($_POST['invDescription'], ENT_QUOTES);
                                                                                         } ?></textarea><br>
 
@@ -102,7 +102,6 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] != 3) {
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </footer>
 
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
 </body>
 
 </html>

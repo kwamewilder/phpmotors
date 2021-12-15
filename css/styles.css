@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Open+Sans&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Open+Sans&display=swap'); */
 html 
 {
     font-family: "Dosis", sans-serif;
@@ -19,16 +18,14 @@ h1,h2,h3,h4,h5,h6
 
 #btn:hover {
     cursor: pointer;
-    background-color: #3a3a3a;
+    background-color: #4c96d7;
     color: white;
 }
 
-/* used to center items */
 .center {
     text-align: center;
 }
 
-/* start of header css for template */
 header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -48,13 +45,10 @@ header a {
     font-weight: 600;
 }
 
-/* welcome message */
 .welcome {
     grid-column: 2;
     justify-self: end;
 }
-
-/* start of the nav bar */
 
 nav {
     background-color: #3a3a3a;
@@ -88,19 +82,13 @@ nav ul li a {
     color: #fff;
 }
 
-/* start of nav link decoration */
-
 nav ul a:hover {
     color: #3a3a3a;
-    padding: 15px 2px 15px 2px;
+    padding: 10px;
     background-color: #4c96d7;
 }
 
-/* start of body design */
-
-/* picture section */
-
-.pictureSection {
+.picture {
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -111,23 +99,23 @@ nav ul a:hover {
     margin-left: 10px;
 }
 
-.pictureSection ul {
+.picture ul {
     list-style: none;
     margin-left: -20px;
     z-index: 1;
 }
 
-.colorText:first-child {
+.cText:first-child {
     font-weight: 900;
 }
 
-.colorText {
+.cText {
     color: #4c96d7;
     font-weight: 600;
     font-size: 24px;
 }
 
-.pictureSection button {
+.picture button {
     border-radius: 0;
     border: #3a3a3a 1px solid;
     background-color: #a6cbeb;
@@ -140,20 +128,16 @@ nav ul a:hover {
     text-align: center;
 }
 
-.pictureSection button:hover {
+.picture button:hover {
     cursor: pointer;
     background-color: #4c96d7;
 }
 
-/* delorean image  */
-
-.pictureSection img {
+.picture img {
     width: 90%;
     order: 2;
     margin-top: -80px;
 }
-
-/* review section */
 
 .reviewSection ul li {
     letter-spacing: 3px;
@@ -162,7 +146,12 @@ nav ul a:hover {
     font-weight: 550;
 }
 
-/* upgrade sections */
+#regbtn:hover{
+    cursor: pointer;
+    background-color: #4c96d7;
+    color:#ffffff;
+}
+
 
 .upgradeSection .gridWrapper {
     display: grid;
@@ -202,16 +191,12 @@ nav ul a:hover {
     margin-left: 15px;
 }
 
-/* start of footer */
 
 footer {
-    border-top: 3px solid #3a3a3a;
+    border-top: 3px solid #000000;
     text-align: center;
 }
 
-/* start of login page & registration page style */
-
-/* login page */
 
 form {
     max-width: 100%;
@@ -230,22 +215,7 @@ input {
     border-radius: 4px;
 }
 
-.sign-in {
-    font-weight: 800;
-    background-color: #4c96d7;
-    color: #3a3a3a;
-}
 
-.sign-in:hover {
-    background-color: #3a3a3a;
-    color: #4c96d7;
-    cursor: pointer;
-}
-
-label {
-    text-align: center;
-    margin: 0 auto;
-}
 
 .accountCreate {
     text-decoration: none;
@@ -256,8 +226,6 @@ label {
     color: #4c96d7;
 }
 
-/* start for classification, vehicle and management page */
-/* mainly focusing on the vehicle page */
 
 #classificationId {
     margin-left: 45%;
@@ -271,7 +239,6 @@ label {
     height: 300px;
 }
 
-/* Styling for the vehicle classification pages */
 #inv-display {
     margin: 0;
     padding: 0;
@@ -290,12 +257,11 @@ label {
     max-width: 100%;
 }
 
-/* start of admin page */
 .adminList {
     list-style: none;
 }
 
-/* start of vehicle detail page small view */
+
 .main{
     display: flex;
     flex-direction: column;
@@ -303,6 +269,37 @@ label {
     margin: 0 auto;
 }
 
+.detail-center{
+    text-align: center;
+}
+
+.sign-in {
+    font-weight: 800;
+    background-color: #4c96d7;
+    color: #ffffff;
+}
+
+.sign-in:hover {
+    background-color: #ffffff;
+    color: #4c96d7;
+    cursor: pointer;
+}
+
+label {
+    text-align: center;
+    margin: 0 auto;
+}
+#vehicle-desc{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#thumbnail-list{
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
 .vInfoImg{
     width: 90%;
     margin-top: 10px;
@@ -315,25 +312,12 @@ label {
 }
 
 #inv-text p:nth-child(even){
-    background-color:lightgray;
+    background-color: #4c96d7;
+    color: #ffffff;
     font-weight: 800;
 }
 
-.detail-center{
-    text-align: center;
-}
 
-#vehicle-desc{
-    width: 50%;
-    margin: 0 auto;
-}
-
-#thumbnail-list{
-    max-width: 90%;
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-}
 
 .alt-images{
     width:100%;
@@ -341,24 +325,23 @@ label {
     margin: 10px;
 }
 
-/* review portion */
+
 
 #review{
     margin-left: 20%;
 }
 
 .review-portion{
-    background-color: #aaa6a4;
-    color: black;
+    background-color: #4c96d7;
+    color: #ffffff;
 }
 
-
-/* start of image upload page */
 .image-select-div{
     max-width: 15%;
     margin: 0 auto;
 }
-/* start of very small devices (mainly to fix nav) */
+
+/* Small devices */
 
 @media only screen and (max-width: 420px) {
     nav ul {
@@ -371,7 +354,7 @@ label {
         font-size: 18px;
     }
 
-    .pictureSection img {
+    .picture img {
         margin-top: -60px;
     }
 
@@ -383,7 +366,7 @@ label {
 
 
 
-/* start of large screen design */
+/* Large screen */
 
 @media only screen and (min-width: 1008px) {
     html {
@@ -393,48 +376,18 @@ label {
     body {
         margin: 0 auto;
         width: 70%;
-        /* height: 50%; */
         background-color: #fff;
         border: 5px solid #4c96d7;
         border-radius: 2px;
         margin-top: 10px;
     }
 
-    /* start of header */
 
     header a {
         margin-right: 50px;
     }
 
-    /* start of nav */
-
-    nav ul {
-        justify-content: flex-start;
-        margin: 10px 25px;
-        padding: 5px;
-    }
-
-    /* start of body */
-
-    .upgradeSection .headings {
-        font-size: 20px;
-    }
-
-    .reviewSection .headings {
-        font-size: 20px;
-    }
-
-    .pictureSection button {
-        padding: 15px;
-        margin: 5px 10px;
-        width: 20%;
-        font-size: 20px;
-        order: 2;
-        z-index: 1;
-    }
-
-    .pictureSection img {
-        /* width: 80%; */
+     .picture img {
         order: 3;
         z-index: 0;
     }
@@ -448,6 +401,30 @@ label {
     .reviewSection {
         grid-column: 2;
         grid-row: 1;
+    }
+
+    nav ul {
+        justify-content: flex-start;
+        margin: 10px 25px;
+        padding: 5px;
+    }
+
+
+    .upgradeSection .headings {
+        font-size: 20px;
+    }
+
+    .reviewSection .headings {
+        font-size: 20px;
+    }
+
+    .picture button {
+        padding: 15px;
+        margin: 5px 10px;
+        width: 20%;
+        font-size: 20px;
+        order: 2;
+        z-index: 1;
     }
 
     .upgradeSection {
@@ -474,14 +451,12 @@ label {
         font-weight: 600;
     }
 
-    /* label section large */
 
     .passwordInfo {
         margin-left: 20%;
     }
 
-    /* start for classification, vehicle and management page */
-    /* mainly focusing on the vehicle page */
+
     #classificationId {
         margin-left: 47%;
     }
@@ -492,7 +467,7 @@ label {
         height: 300px;
     }
 
-    /* styling for the vehicle classification page large screen only */
+ 
     #inv-display {
         flex-flow: row wrap;
         justify-content: space-evenly;
@@ -517,8 +492,6 @@ label {
         width: 100%;
         margin-top: -20px;
     }
-
-    /* start of single vehicle page */
 
     .main{
         display: grid;

@@ -59,7 +59,7 @@ if (isset($_SESSION['message'])) {
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/footer.php'; ?>
     </footer>
 
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/common/scripts/scripts.php'; ?>
+   
 </body>
 
 </html>
